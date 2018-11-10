@@ -1,0 +1,91 @@
+#home-banner-video {
+    position: fixed;
+    z-index: 200000;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    margin-top: -64px;
+}
+
+.vip-course-text > h1 {
+    color: #00aff2;
+    font-size: 38px;
+    font-weight: normal;
+}
+
+.vip-course-box {
+    margin-top: 124px;
+}
+
+.vip-course-text {
+    margin: 0 16% 20px;
+}
+
+.vip-course-text > p {
+    color: #00aff2;
+    font-size: 28px;
+}
+
+.vip-course-list {
+    margin: 0 16%;
+}
+
+.vip-course-item {
+    position: relative;
+    height: 370px;
+    margin-bottom: 20px;
+}
+
+.right-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 58%;
+    background-image: url(https://img.kaikeba.com/web_vip.png);
+    background-position: center;
+    background-size: auto 100%;
+}
+
+.left-text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 42%;
+    background: #191a1b;
+    padding: 40px 30px 30px;
+    box-sizing: border-box;
+}
+
+.left-text > p {
+    color: white;
+}
+
+p.course-name {
+    font-size: 32px;
+}
+
+p.course-describe {
+    font-size: 14px;
+}
+
+.cooperate-company > span {
+    color: white;
+}
+
+.cooperate-company > img {
+    height: 16px;
+}
+
+img.arrow {
+    margin-top: 5px;
+    position: absolute;
+    right: 30px;
+    bottom: 36px;
+}
+
+.cooperate-company {
+    position: absolute;
+    bottom: 30px;
+}

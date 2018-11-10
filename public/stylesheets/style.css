@@ -1,0 +1,104 @@
+body {
+    padding: 0;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #ecf2f5;
+}
+
+a {
+    color: #00B7FF;
+}
+
+.nav {
+    position: absolute;
+    right: 150px;
+    top: 0;
+    width: 650px;
+    background-color: #fff;
+}
+
+.left-logo img {
+    height: 30px;
+    margin: 20px 30px;
+}
+
+.left-logo, .left-logo a {
+    float: left;
+}
+
+.right-view {
+    float: right;
+    display: flex;
+    width: 300px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.menu-item {
+    padding: 0 20px;
+    display: block;
+    height: 73px;
+    line-height: 73px;
+}
+
+/*vip下拉菜单*/
+img.course-img {
+    width: 50px;
+}
+
+.menu-vip {
+    width: 650px;
+    position: absolute;
+    z-index: 10000;
+    right: 0;
+}
+
+.menu-arrow {
+    border: 8px solid transparent;
+    border-bottom-color: white;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -6px;
+    left: 388px;
+}
+
+.menu-content {
+    background: white;
+    border-radius: 3px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+}
+
+p.vip-title {
+    margin: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.course-list {
+    overflow: hidden;
+    padding: 15px 0;
+}
+
+img.course-img {
+    float: left;
+    margin-left: 16px;
+}
+
+.course-text {
+    float: left;
+}
+
+.course-text {
+    width: 220px;
+    margin-left: 12px;
+}
+
+p.course-name {
+    color: #909090;
+}
+
+p.course-describe {
+    color: #ababab;
+    font-size: 12px;
+    margin-top: 5px;
+}

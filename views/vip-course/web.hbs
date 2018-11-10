@@ -1,0 +1,83 @@
+web
+
+<!--html注释-->
+{{! hbs注释}}
+
+<!--html内容-->
+{{htmlStr}}
+{{{htmlStr}}}
+
+<!--条件语句-->
+{{#if bool}}
+    欢迎您，tom
+{{else}}
+    <a href="#">请登录</a>
+{{/if}}
+
+<!--条件很多-->
+{{#if typeSwitch.isAAA}}
+    aaa
+{{else if typeSwitch.isBBB}}
+    bbb
+{{else if typeSwitch.isCCC}}
+    ccc
+{{else}}
+    default
+{{/if}}
+
+
+{{#unless abc}}
+    abc内容
+{{/unless}}
+
+<!--循环-->
+<ul>
+    {{#each arr}}
+        <li>
+            {{addOne @index}}
+            {{name}} -
+            {{city.cname}} -
+            {{#each hobby}}
+                {{.}}
+            {{/each}}
+        </li>
+    {{else}}
+        没有任何数据
+    {{/each}}
+</ul>
+<!--遍历对象-->
+{{#each obj}}
+    key: {{@key}}
+    value: {{.}}
+{{/each}}
+
+<!--使用自定义helper-->
+<p>生日：{{date birthday 'YYYY-MM-DD hh:mm:ss'}}</p>
+
+{{#and a b}}
+    a,b都是true
+{{else}}
+    a,b之中有false
+{{/and}}
+
+
+{{#extend 'jquery'}}
+    <script>
+        $(function () {
+
+        })
+    </script>
+{{/extend}}
+
+
+
+
+
+
+
+
+
+
+
+
+

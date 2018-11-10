@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    {{{block 'styles'}}}
+</head>
+<body>
+<!--导航栏-->
+
+
+<!--动态partial: whichPartial是一个helper-->
+{{> (whichPartial navName)}}
+
+<!--块级partial-->
+{{#> ooxx}}
+    出现错误时，您会看到这句话
+{{/ooxx}}
+
+<!--使用块级partial传递内容-->
+<!--{{#> win}}-->
+    <!--<div>这是窗口里面的内容。。。。。。。。。。。。。</div>-->
+<!--{{/win}}-->
+
+<!--布局组件-->
+{{#> layout}}
+    {{#*inline 'top'}}
+        这是top
+    {{/inline}}
+    {{#*inline 'foo'}}
+        这是foo
+    {{/inline}}
+    {{#*inline 'bar'}}
+        这是bar
+    {{/inline}}
+{{/layout}}
+
+{{{body}}}
+
+<!--jquery-->
+<script src="/javascripts/jquery.js"></script>
+{{{block 'jquery'}}}
+
+</body>
+</html>
