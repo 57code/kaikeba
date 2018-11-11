@@ -1,3 +1,7 @@
+body, ul, p, h1, h2, h3{
+    margin: 0;
+    padding: 0;
+}
 body {
     padding: 0;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -6,6 +10,7 @@ body {
 
 a {
     color: #00B7FF;
+    text-decoration: none;
 }
 
 .nav {
@@ -93,7 +98,8 @@ img.course-img {
     margin-left: 12px;
 }
 
-p.course-name {
+.course-list-item p.course-name {
+    font-size: 18px;
     color: #909090;
 }
 

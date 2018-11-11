@@ -38,7 +38,7 @@ router.get('/:course', (req, res, next) => {
             },
             birthday: new Date(),
             a:true,
-            b:false
+            b:false,
         })
     } else {
         // 没有匹配的vip课程

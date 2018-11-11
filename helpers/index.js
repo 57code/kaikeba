@@ -9,7 +9,7 @@ hbs.registerPartials(path.join(__dirname, '../views/partials'))
 
 
 // 只导入一部分,并且和我们的handlbars实例挂钩
-helpers.comparison({handlebars: hbs.handlebars})
+helpers({handlebars: hbs.handlebars})
 
 // 注册帮助方法
 hbs.registerHelper('addOne', function (num) {
@@ -34,7 +34,6 @@ hbs.registerHelper('extend', function (name, context) {
         block = blocks[name] = [];
     }
     // 变异指令中代码块并放入block
-    console.log(this);
     block.push(context.fn(this));
     // 与context.fn()配对还有一个方法
     // context.inverse()

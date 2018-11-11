@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser'); // cookie解析
 const logger = require('morgan'); // 日志
 const helper = require('./helpers');//注册hbs帮助方法
 
-
 // 导出自定义中间件
 const {initLocals} = require('./middleware');
 
@@ -20,8 +19,6 @@ const app = express();
 // 视图引擎设置
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
-
 
 // 应用中间件
 app.use(logger('dev'));//日志
