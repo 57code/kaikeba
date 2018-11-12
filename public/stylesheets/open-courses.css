@@ -1,3 +1,270 @@
-h1{
-    color: #00B7FF;
+body {
+    background-color: #fff;
+}
+
+.opencourse-top, .opencourse-top > img {
+    width: 100%;
+}
+
+.opencourse-contains {
+    position: relative;
+    max-width: 1200px;
+    margin: -45px auto 0;
+}
+
+.head {
+    width: 100%;
+    height: 80px;
+    background: #191a1b;
+    border-radius: 3px;
+    box-shadow: 0 0 5px 2px rgba(21, 21, 21, 0.2);
+}
+
+.opencourse-contains .head span {
+    line-height: 80px;
+    display: inline-block;
+    float: left;
+    text-align: center;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+}
+
+.opencourse-contains .head .time {
+    width: 12.8%;
+}
+
+.opencourse-contains .head .course {
+    width: 54%;
+}
+
+.opencourse-contains .head .signupnumber {
+    width: 17.6%;
+}
+
+span.signupstate {
+    width: 15%;
+}
+
+.opencourse-contains .course-detailed {
+    margin-top: 20px;
+}
+
+.row {
+    height: 104px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all .5s;
+}
+
+.row:hover {
+    background: #ecf2f5;
+}
+
+.row .col {
+    float: left;
+}
+
+.row .time {
+    padding-top: 8px;
+    width: 12.8%;
+    text-align: center;
+}
+
+.row .course {
+    width: 54%;
+    padding: 25px 72px 0 82px;
+    box-sizing: border-box;
+}
+
+.row .course p {
+    color: #757575;
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+.row .signupnumber {
+    width: 17.6%;
+    position: relative;
+    text-align: center;
+    line-height: 103px;
+    color: #606263;
+    font-size: 24px;
+}
+
+.row .signupstate:hover,
+.row:hover .signupstate {
+    background: #000;
+    border-radius: 3px;
+    color: #ffffff;
+}
+
+.row .signupstate {
+    color: #67e2ba;
+}
+
+.row .signupstate.notBegin {
+    color: #02a7f3;
+}
+
+.row .signupstate {
+    width: 15.5%;
+    height: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 103px;
+    cursor: pointer;
+    text-align: center;
+    transition: all .5s;
+}
+
+/*日历*/
+.row .time .time-year {
+    width: 42px;
+    height: 50px;
+    margin: 0 auto;
+    border-radius: 3px;
+    text-align: center;
+    border: 1px solid #17d6a0;
+    font-size: 0;
+}
+
+.row .time .time-year.notBegin {
+    border-color: #02a7f3;
+}
+
+.row .time .time-year .top {
+    width: 100%;
+    height: 34px;
+    color: #ffffff;
+    font-size: 22px;
+    text-align: center;
+    background: #17d6a0;
+    line-height: 36px;
+}
+
+.row .time .time-year.notBegin .top {
+    background: #02a7f3;
+}
+
+.row .time .time-year.notBegin span {
+    color: #02a7f3;
+}
+
+.row .time .time-year span {
+    margin-top: 2px;
+    color: #17d6a0;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 14px;
+    display: inline-block;
+}
+
+.row .time .second {
+    display: inline-block;
+    width: 15px;
+    height: 22px;
+    line-height: 22px;
+    background: #676869;
+    font-size: 12px;
+    color: #fff;
+    border-radius: 2px;
+    margin-top: 15px;
+    padding-top: 2px;
+}
+
+.row .time .second.second-right {
+    margin-right: 4px;
+}
+
+.row .time .colon {
+    margin: 0 2px;
+}
+
+#signup-win {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+}
+
+.mask {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .8);
+}
+
+.signup-content {
+    width: 650px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -325px;
+    margin-top: -150px;
+    background-color: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 24px;
+}
+
+.course-info,
+.signup-form {
+    float: left;
+}
+
+.course-info {
+    border-right: 1px solid #DDD;
+    padding-right: 30px;
+    width: 308px;
+}
+
+.course-info > img {
+    width: 308px;
+    height: 205px;
+}
+
+.course-info > h3 {
+    margin: 12px 0;
+    color: #4d4d4d;
+    font-weight: normal;
+}
+
+.course-info > p {
+    color: #606060;
+}
+
+.signup-form {
+    padding: 70px 0 0 30px;
+}
+
+.signup-form > p {
+    margin-bottom: 10px;
+}
+
+.signup-form input {
+    width: 180px;
+    height: 30px;
+    padding-left: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.signup-form button {
+    border: 1px solid #ccc;
+    background: #fff;
+    height: 32px;
+    width: 85px;
+    outline: none;
+}
+
+.signup-form button.btn-signup {
+    width: 100%;
+    height: 40px;
+    background: #00B7FF;
+    color: white;
+    border: none;
 }

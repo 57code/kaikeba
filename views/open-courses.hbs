@@ -1,6 +1,60 @@
 <link rel="stylesheet" href="/stylesheets/open-courses.css">
 
+<!--banner-->
+<div class="opencourse-top"><img src="http://img.kaikeba.com/opencouse-banner.png"></div>
+<!--公开课列表容器-->
+<div class="opencourse-contains">
+    <!--表头-->
+    <div class="head">
+        <span class="time">直播时间</span>
+        <span class="course">课程</span>
+        <span class="signupnumber">报名人数</span>
+        <span class="signupstate">课程状态</span>
+    </div>
+    <!--列表内容-->
+    <div class="course-detailed">
+        {{#each openCourses}}
+            <div class="row">
+                <div class="col time">
+                    <div class="time-year {{#if notBegin}}notBegin{{/if}}">
+                        <div class="top">{{partOfDate time 'd'}}</div>
+                        <span>{{partOfDate time 'M'}}月</span>
+                    </div>
+                    <span class="second second-right">{{partOfDate time 'h' 0}}</span>
+                    <span class="second">{{partOfDate time 'h' 1}}</span>
+                    <span class="colon">:</span>
+                    <span class="second second-right">{{partOfDate time 'm' 0}}</span>
+                    <span class="second">{{partOfDate time 'm' 1}}</span>
+                </div>
+                <div class="col course">
+                    <h3>{{name}}</h3>
+                    <p>{{description}}</p>
+                </div>
+                <div class="col signupnumber line-right2">{{count}}</div>
+                <div class="col signupstate {{#if notBegin}}notBegin{{/if}}">
+                    {{#if notBegin}}
+                        预约中
+                    {{else}}
+                        看回放
+                    {{/if}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
+
+{{#extend 'jquery'}}
+    <script>
+        $('.col.signupstate').click(function(){
+            alert('我要报名');
+        })
+    </script>
+
+{{/extend}}
 
 
-<h1>公开课页面</h1>
-<p>{{foo}}</p>
+
+
+
+
+

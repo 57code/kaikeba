@@ -23,7 +23,11 @@ hbs.registerHelper('date', function (date, format) {
         return ''
     }
 })
-
+// 传参方式二：hash
+hbs.registerHelper('link', function (options) {
+    const {text, href, style} = options.hash;
+    return new hbs.SafeString(`<a href="${href}" style="${style}">${hbs.Utils.escapeExpression(text)}</a>`);
+})
 
 // 注册扩展代码块helper
 const blocks = {};//代码块缓存对象
@@ -51,7 +55,25 @@ hbs.registerHelper('whichPartial', function (name) {
 })
 
 
-
+// 获取时间一部分
+hbs.registerHelper('partOfDate', function (str, part, index) {
+    const date = new Date(str);
+    if (part == 'd') {
+        return date.getDate();
+    } else if(part == 'M') {
+        return ''+(date.getMonth() + 1)
+    } else if(part == 'h') {
+        let h = date.getHours();
+        h = h < 10 ? ('0' + h) : h.toString();
+        return h[index];
+    } else if(part == 'm') {
+        let m = date.getMinutes();
+        m = m < 10 ? ('0' + m) : m.toString();
+        return m[index];
+    } else {
+        return ''
+    }
+})
 
 
 

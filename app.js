@@ -31,6 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 注册自定义中间件
 app.use(initLocals)
 
+
+
 // 路由注册
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
