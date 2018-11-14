@@ -1,0 +1,133 @@
+{{#extend 'styles'}}
+    <style>
+        /*分页*/
+        .pagination {
+            width: 520px;
+            height: 60px;
+            margin: 40px auto 90px;
+        }
+
+        .pagination ul {
+            list-style: none;
+        }
+
+        .pagination ul,
+        .pagination a {
+            float: left;
+        }
+
+        .first-page, .last-page {
+            display: block;
+            width: 136px;
+            height: 50px;
+            font-size: 13px;
+            line-height: 50px;
+            text-align: center;
+            color: #aaaaaa;
+            border: 1px solid #aaaaaa;
+            border-radius: 2px;
+        }
+
+        .page-img, .page-img-right {
+            height: 12px;
+            margin-right: 8px;
+            margin-top: -3px;
+        }
+
+        .page-img-right {
+            margin-left: 8px;
+        }
+
+        .pagination-prev,
+        .pagination-next {
+            border-radius: 2px;
+            cursor: pointer;
+            margin: -10px 14px 0;
+        }
+
+        .pagination-box {
+            padding: 10px 0;
+        }
+
+        .pagination-box li {
+            float: left;
+        }
+
+        .pagination-item-link {
+            border: 1px solid #aaa;
+            background-color: #fff;
+            border-radius: 2px;
+            outline: none;
+            display: block;
+            height: 50px;
+        }
+
+        .pagination-item-link:after {
+            content: "" !important;
+            display: block;
+            width: 50px;
+            height: 50px;
+        }
+
+        .pagination-prev .pagination-item-link:after {
+            background: url(https://img.kaikeba.com/arrow_left.png) no-repeat center;
+            background-size: 40%;
+        }
+
+        .pagination-next .pagination-item-link:after {
+            background: url(https://img.kaikeba.com/arrow_right.png) no-repeat center;
+            background-size: 40%;
+        }
+
+        .pagination-pager {
+            margin-left: -14px;
+        }
+
+        .pagination-pager input {
+            border: 0 !important;
+            font-size: 23px;
+            margin: -4px -16px 6px 0;
+            font-weight: normal;
+            width: 50px;
+            height: 28px;
+            outline: none;
+            text-align: center;
+        }
+
+        .disabled {
+            pointer-events: none;
+            opacity: .5;
+        }
+    </style>
+{{/extend}}
+
+<div class="pagination">
+    <a class="first-page {{#unless first}}disabled{{/unless}}"
+       {{#if first}}href="?page=1"{{/if}}>
+        <img src="https://img.kaikeba.com/arrow_left.png" class="page-img">
+        <span>第一页</span>
+    </a>
+    <ul class="pagination-box">
+        <!--上一页-->
+        <li class="pagination-prev {{#unless prev}}disabled{{/unless}}">
+        <a class="pagination-item-link"
+            {{#if prev}}href="?page={{minusOne page}}"{{/if}}>
+            </a>
+        </li>
+        <!--页码-->
+        <li class="pagination-pager">
+            <input type="text" value="{{page}}">
+            <span class="pagination-slash">／</span>{{total}}</li>
+        <!--下一页-->
+        <li class="pagination-next {{#unless next}}disabled{{/unless}}">
+        <a class="pagination-item-link"
+            {{#if next}}href="?page={{addOne page}}"{{/if}}>
+            </a>
+        </li>
+    </ul>
+        <a class="last-page {{#unless last}}disabled{{/unless}}"
+    {{#if last}}href="?page={{total}}"{{/if}}>最后页
+    <img src="https://img.kaikeba.com/arrow_right.png"
+         class="page-img-right">
+    </a>
+</div>

@@ -43,9 +43,13 @@
     </div>
 </div>
 
+<!--分页-->
+{{>pager pagination}}
+
+
 {{#extend 'jquery'}}
     <script>
-        $('.col.signupstate').click(function(){
+        $('.col.signupstate').click(function () {
             alert('我要报名');
         })
     </script>

@@ -15,6 +15,9 @@ helpers({handlebars: hbs.handlebars})
 hbs.registerHelper('addOne', function (num) {
     return ++num;
 })
+hbs.registerHelper('minusOne', function (num) {
+    return --num;
+})
 hbs.registerHelper('date', function (date, format) {
     const m = moment(date);
     if (m) {
