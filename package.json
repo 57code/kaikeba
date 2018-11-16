@@ -6,15 +6,18 @@
     "start": "node-dev ./bin/www"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
+    "express-validator": "^5.3.0",
     "handlebars-helpers": "^0.10.0",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
     "jquery": "^3.3.1",
     "moment": "^2.22.2",
     "morgan": "~1.9.0",
+    "multer": "^1.4.1",
     "mysql": "^2.16.0",
     "mysql2": "^1.6.4",
     "sequelize": "^4.41.2"

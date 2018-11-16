@@ -7,7 +7,10 @@ const sequelize = new Sequelize('kkb', 'kaikeba_admin', 'admin', {
     host: 'localhost',
     dialect: 'mysql', // 方言设置
     pool: {max: 5, acquire: 30000, idle: 10000}, // 连接池
-    timestamps: false
+    define: {
+        timestamps: false,
+        freezeTableName: true
+    }
 });
 // 定义模型
 const User = sequelize.define('user', {// 字段定义
@@ -26,7 +29,7 @@ User.sync({force: true}).then(() => {
 }).then(() => {
     // 查询前面插入数据
     User.findAll().then(users => {
-        console.log(users);
+        // console.log(users);
     })
 })
 

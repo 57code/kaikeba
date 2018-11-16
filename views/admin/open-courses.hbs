@@ -1,0 +1,60 @@
+
+<!--列表-->
+<table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th>课程名</th>
+        <th>描述</th>
+        <th>封面</th>
+        <th>时间</th>
+        <th>报名数</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each courses}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{description}}</td>
+            <td><img src="/images/{{poster}}" height="100"></td>
+            <td>{{time}}</td>
+            <td>{{count}}</td>
+            <td>
+                <a href="open-courses-update/{{id}}">更新</a>
+                <a href="open-courses-delete/{{id}}">删除</a>
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+
+<form action="open-courses" method="post"
+      enctype="multipart/form-data"
+      style="width: 50%;margin: 10px;">
+    <legend>新增公开课</legend>
+
+    <div class="form-group">
+        <label for="name">课程名称</label>
+        <input type="text" class="form-control"
+               name="name" id="name">
+    </div>
+
+    <div class="form-group">
+        <label for="description">课程描述</label>
+        <textarea type="text" class="form-control"
+                  name="description" id="description"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="time">截止时间</label>
+        <input type="datetime-local" class="form-control"
+               name="time" id="time">
+    </div>
+
+    <div class="form-group">
+        <label for="poster">封面图</label>
+        <input type="file" class="form-control" name="file" id="file">
+    </div>
+
+    <button type="submit" class="btn btn-primary">提交</button>
+</form>
