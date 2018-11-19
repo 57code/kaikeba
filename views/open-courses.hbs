@@ -46,12 +46,42 @@
 <!--分页-->
 {{>pager pagination}}
 
+<!--预报名窗口-->
+<div id="signup-win">
+    <div class="mask"></div>
+    <div class="signup-content">
+        <div class="course-info">
+            <img>
+            <h3></h3>
+            <p></p>
+        </div>
+        <div class="signup-form">
+            <p> <input id="phone" type="tel" placeholder="请输入手机号">
+                <button id="btn-code">获取验证码</button> </p>
+            <p> <input id="code" type="text" placeholder="请输入收到的验证码"> </p>
+            <p> <button id="btn-signup">报名</button> </p>
+        </div>
+    </div>
+</div>
+
 
 {{#extend 'jquery'}}
     <script>
-        $('.col.signupstate').click(function () {
-            alert('我要报名');
-        })
+        $('.row').click(function () {
+            //弹出详情及报名窗口
+            $('#signup-win').fadeIn("fast");
+            $('body').css({overflow: 'hidden'});
+
+            // 获取课程相应信息
+            $('.course-info>img').attr('src', '/images/'+$(this).find('.course').data('poster')); //注意：在上面列表添加data-poster
+            $('.course-info>h3').text($(this).find('.course>h3').text());
+            $('.course-info>p').text($(this).find('.course>p').text());
+        });
+
+        $('.mask').click(function () {
+            $('#signup-win').fadeOut("fast");
+            $('body').css({overflow: 'auto'});
+        });
     </script>
 
 {{/extend}}

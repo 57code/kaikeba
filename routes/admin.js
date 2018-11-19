@@ -142,7 +142,7 @@ router.post('/open-courses',
                 console.log(error);
                 res.render('admin/result', {
                     layout: 'layout-admin', // 设置布局页
-                    message
+                    message: '操作失败'
                 })
             }
         } else {

@@ -4,6 +4,7 @@ const path = require('path'); // 处理路径相关
 const cookieParser = require('cookie-parser'); // cookie解析
 const logger = require('morgan'); // 日志
 const helper = require('./helpers');//注册hbs帮助方法
+const cors = require('cors')
 
 // 导出自定义中间件
 const {initLocals} = require('./middleware');
@@ -22,6 +23,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 // 应用中间件
+app.use(cors({
+    origin: 'http://localhost:8080',
+    credentials: true
+}));
 app.use(logger('dev'));//日志
 app.use(express.json());//获取ajax传递json
 app.use(express.urlencoded({extended: false}));//解析url参数

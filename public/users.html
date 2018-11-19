@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跨域问题解决方案汇总</title>
+</head>
+<body>
+
+<script src="/javascripts/jquery.js"></script>
+<script>
+    // jsonp
+    // $.ajax({
+    //     url: 'http://127.0.0.1:8080/users/jsonp',
+    //     dataType: 'jsonp',
+    //     data: {name: 'tom'},
+    //     success: function (users) {
+    //         console.log(users);
+    //     }
+    // })
+    // cors  get
+    // $.ajax({
+    //     url: 'http://127.0.0.1:8080/users/cors',
+    //     success: function (users) {
+    //         console.log(users);
+    //     }
+    // })
+
+    // post
+    // $.ajax({
+    //     url: 'http://127.0.0.1:8080/users/cors',
+    //     method: 'post', // 默认编码urlencoded
+    //     headers: {'Content-Type': 'application/json'},
+    //     data: JSON.stringify({ name:'jerry', age:20 }),
+    //     success: function (users) {
+    //         console.log(users);
+    //     }
+    // })
+
+    // put
+    $.ajax({
+        url: 'http://127.0.0.1:8080/users/cors',
+        method: 'put',
+        headers: {'Content-Type': 'application/json'},
+        data: JSON.stringify({name: 'tom', age: 21}),
+        xhrFields: {withCredentials: true}, // 携带cookie
+        success: function (users) {
+            console.log(users);
+        }
+    })
+</script>
+</body>
+</html>
