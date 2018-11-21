@@ -15,6 +15,7 @@ const usersRouter = require('./routes/users');
 const openCourses = require('./routes/open-courses');
 const vipCourse = require('./routes/vip-course');
 const adminRouter = require('./routes/admin');
+const codeRouter = require('./routes/api/code');
 
 const app = express();
 
@@ -45,6 +46,7 @@ app.use('/users', usersRouter);
 app.use('/open-courses', openCourses);
 app.use('/vip-course', vipCourse);
 app.use('/admin', adminRouter);
+app.use('/api/code', codeRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

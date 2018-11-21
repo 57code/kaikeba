@@ -82,6 +82,39 @@
             $('#signup-win').fadeOut("fast");
             $('body').css({overflow: 'auto'});
         });
+
+        //请求短信验证码
+        $('#btn-code').click(function () {
+            $.ajax({
+                url: '/api/code/' + $('#phone').val(),
+                success: function (result) {
+                    if (result.success) {
+                        console.log('请求验证码成功', result.code);
+
+                    } else {
+                        alert('请求验证码失败，请重试！');
+                    }
+                }
+            })
+        })
+
+        // 提交报名
+        $('#btn-signup').click(function () {
+            $.ajax({
+                url: '/api/code',
+                method: 'POST',
+                data: {phone: $('#phone').val(), code: $('#code').val()},
+                success: function (result) {
+                    if (result.success) {
+                        alert('报名成功！');
+                        // 关闭窗口
+                        $('.mask').trigger('click');
+                    } else {
+                        alert('报名失败！');
+                    }
+                }
+            })
+        })
     </script>
 
 {{/extend}}
