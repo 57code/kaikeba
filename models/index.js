@@ -13,25 +13,25 @@ const sequelize = new Sequelize('kkb', 'kaikeba_admin', 'admin', {
     }
 });
 // 定义模型
-const User = sequelize.define('user', {// 字段定义
-    firstName: {type: Sequelize.STRING(20), notNull: true},
-    lastName: Sequelize.STRING(20),
-    age: Sequelize.INTEGER,
-});
-
-// 同步数据库,FORCE如果为true则会删除已存在同名表
-User.sync({force: true}).then(() => {
-    // 插入若干测试数据
-    return User.create({
-        firstName: 'Tom',
-        lastName: 'Cruise'
-    })
-}).then(() => {
-    // 查询前面插入数据
-    User.findAll().then(users => {
-        // console.log(users);
-    })
-})
+// const User = sequelize.define('user', {// 字段定义
+//     firstName: {type: Sequelize.STRING(20), notNull: true},
+//     lastName: Sequelize.STRING(20),
+//     age: Sequelize.INTEGER,
+// });
+//
+// // 同步数据库,FORCE如果为true则会删除已存在同名表
+// User.sync({force: true}).then(() => {
+//     // 插入若干测试数据
+//     return User.create({
+//         firstName: 'Tom',
+//         lastName: 'Cruise'
+//     })
+// }).then(() => {
+//     // 查询前面插入数据
+//     User.findAll().then(users => {
+//         // console.log(users);
+//     })
+// })
 
 // 要导出的对象
 const db = {Sequelize, sequelize};
