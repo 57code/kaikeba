@@ -34,7 +34,11 @@ app.use(express.urlencoded({extended: false}));//解析url参数
 app.use(cookieParser('its a secret'));//cookie解析
 // 配置session，需要在cookie下面
 const session = require('express-session');
+const Store = require('express-mysql-session')(session);
+const {pool} = require('./models/db');
+const store = new Store(null, pool);
 app.use(session({
+    store, // 设置session存储为mysql，注意当前数据库用户需要表创建权限
     secret: 'its a secret',
     resave: false,
     saveUninitialized: false
