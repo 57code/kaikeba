@@ -41,14 +41,14 @@ app.use(session({
     store, // 设置session存储为mysql，注意当前数据库用户需要表创建权限
     secret: 'its a secret',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {maxAge: 7 * 24 * 3600 * 1000}
 }))
 // 设置静态目录
 app.use(express.static(path.join(__dirname, 'public')));
 
 // 注册自定义中间件
 app.use(initLocals)
-
 
 
 // 路由注册
