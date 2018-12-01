@@ -26,14 +26,15 @@ router.post('/login', async (req, res) => {
             // 登录成功需要在回话中保存登录状态
             if (autoLogin) {
                 // cookie解决方案，和session二选一
-                res.cookie('uid', user.id, {
-                    signed: true, // 签名
-                    maxAge: 7*24*3600*1000, // 有效期
-                    httpOnly: true
-                })
-                // session解决方案
-                req.session.user = user;
+                // res.cookie('uid', user.id, {
+                //     signed: true, // 签名
+                //     maxAge: 7*24*3600*1000, // 有效期
+                //     httpOnly: true
+                // })
+                req.session.cookie.maxAge = 7*24*3600*1000;
             }
+            // session存储用户登录状态
+            req.session.user = user;
             res.json({success: true, data: user});
         } else {
             res.json({success: false, message: '电话或密码错误'});

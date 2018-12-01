@@ -42,7 +42,7 @@ app.use(session({
     secret: 'its a secret',
     resave: false,
     saveUninitialized: false,
-    cookie: {maxAge: 7 * 24 * 3600 * 1000}
+    // cookie: {maxAge: 7 * 24 * 3600 * 1000}
 }))
 // 设置静态目录
 app.use(express.static(path.join(__dirname, 'public')));
