@@ -42,6 +42,8 @@ app.use(session({
     secret: 'its a secret',
     resave: false,
     saveUninitialized: false,
+    // 如果不设置cookie中的maxAge，则session只在当前页面打开时有效，若
+    // 关闭页面即失效
     // cookie: {maxAge: 7 * 24 * 3600 * 1000}
 }))
 // 设置静态目录

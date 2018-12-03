@@ -112,6 +112,16 @@ router.post('/register', async (req, res) => {
 })
 
 
+// 验证用户是否登录
+router.post('/is-login', (req, res) => {
+    if (req.session.user) {
+        // 已登录
+        res.json({success: true, data: req.session.user})
+    } else {
+        res.json({success: false, message: '用户未登录'})
+    }
+});
+
 module.exports = router;
 
 
