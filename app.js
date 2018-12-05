@@ -61,6 +61,7 @@ app.use('/vip-course', vipCourse);
 app.use('/admin', adminRouter);
 app.use('/api/code', codeRouter);
 app.use('/api/users', require('./routes/api/users'));
+app.use('/api/courses', require('./routes/api/course'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
