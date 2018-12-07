@@ -3,7 +3,7 @@ var router = express.Router();
 const {query} = require('../../models/db');
 const md5 = require('md5');
 const salt = 'take a little salt';
-router.post('/auto-login', (req,res) => {
+router.post('/auto-login', (req, res) => {
     const id = req.signedCookies.uid; // 加密方式获取
     // const id = req.cookies.uid; // 非加密获取
     if (id) {
@@ -31,7 +31,7 @@ router.post('/login', async (req, res) => {
                 //     maxAge: 7*24*3600*1000, // 有效期
                 //     httpOnly: true
                 // })
-                req.session.cookie.maxAge = 7*24*3600*1000;
+                req.session.cookie.maxAge = 7 * 24 * 3600 * 1000;
             }
             // session存储用户登录状态
             req.session.user = user;
@@ -133,6 +133,84 @@ router.post('/logout', (req, res) => {
         }
     })
 });
+
+
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) { // 存储目录
+        cb(null, 'public/images/');
+    },
+    filename: function (req, file, cb) {
+        let extname = '';
+        switch (file.mimetype) {
+            case 'image/jpeg':
+                extname = '.jpg';
+                break;
+            case 'image/png':
+                extname = '.png';
+                break;
+            case 'image/gif':
+                extname = '.gif';
+                break;
+        }
+        cb(null, Date.now() + extname);
+    }
+})
+const upload = multer({
+    // dest: 'public/images',
+    storage,
+    limits: {fileSize: 1 * 1024 * 1024},//最大2M
+    fileFilter: function (req, file, cb) {
+        console.log(file);
+        // 判断文件是否合法，合法则处理，不合法则拒绝
+        if (file.mimetype === 'image/gif' ||
+            file.mimetype === 'image/jpeg' ||
+            file.mimetype === 'image/png') {
+            // 接收文件
+            cb(null, true);
+        } else {
+            cb(new Error('请上传图片格式'), false);
+        }
+    }
+})
+
+router.post('/uploadAvatar', upload.single('file'),
+    async (req, res) => {
+        if (!req.file) {
+            res.sendStatus(500);
+        } else {
+            try {
+                // 更新session数据
+                req.session.user.avatar = req.file.filename;
+
+                // 更新user表中的数据
+                const result = await query(`UPDATE user SET avatar=? WHERE id=?`,
+                    [req.file.filename, req.session.user.id]);
+                if (result.affectedRows > 0) {
+                    res.json({success: true, data: req.file.filename})
+                }
+            } catch (error) {
+
+            }
+        }
+    }
+)
+
+
+// 查询用户所有课程
+router.get('/my-courses', async (req, res) => {
+    try {
+        const sql = `select c.id,c.name,c.phase,vc.poster from user_clazz uc
+                        left join clazz c on uc.clazz_id = c.id
+                        left join vip_course vc on c.course_id = vc.id
+                        where user_id=?`
+        const data = await query(sql, req.session.user.id);
+        res.json({success: true, data})
+    } catch (error) {
+
+    }
+})
+
 
 module.exports = router;
 
