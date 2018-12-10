@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {query} = require('../models/db');
+const {query,getConnection,query2,commit,rollback,beginTransaction} = require('../models/db');
 
 router.get('/', async (req, res, next) => {
     res.redirect('/admin/open-courses')
@@ -165,5 +165,44 @@ router.get('/vip-courses', async (req, res, next) => {
     })
 });
 
+router.get('/stage', async (req, res, next) => {
+    const clazzes = await query('select * from clazz');
+    res.render('admin/stage', {layout: 'layout-admin', clazzes, nav: 'stage'})
+});
+
+
+router.post('/stage', async (req, res, next) => {
+    let conn;
+    try {
+        // 1. 获取连接
+        conn = await getConnection();
+        // 2. 开启事务
+        beginTransaction(conn);
+        // 3. 开启操作
+        // 3.1 插入学习阶段
+        const result = await query2(conn, 'INSERT INTO stage SET ?', req.body);
+        if (result.affectedRows > 0) {
+            // 根据班级id获取该班所有学员id
+            const stageId = result.insertId;
+            const ids = await query2(conn, 'SELECT user_id FROM user_clazz WHERE clazz_id=?', req.body.clazz_id);
+            console.log(stageId, ids);
+            // 3.2 为每位学员添加学习状态
+            for (let o of ids) {
+                await query2(conn, 'INSERT INTO status SET ?',
+                    {user_id: o.user_id, stage_id: stageId})
+            }
+            // 4.提交事务
+            await commit(conn);
+            res.render('admin/result', {layout: 'layout-admin', message: '插入成功'})
+        } else {
+            res.render('admin/result', {layout: 'layout-admin', message: '插入阶段失败'})
+        }
+    } catch (error) {
+        console.log(error);
+        // 有错误发生，回滚
+        await rollback(conn);
+        res.render('admin/result', {layout: 'layout-admin', message: '服务器内部错误'})
+    }
+});
 
 module.exports = router;

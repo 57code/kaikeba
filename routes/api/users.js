@@ -211,6 +211,54 @@ router.get('/my-courses', async (req, res) => {
     }
 })
 
+router.get('/my-course/:id', async (req, res) => {
+    try {
+        const sql = `select c.id,c.name,c.phase,vc.poster from user_clazz uc
+                        left join clazz c on uc.clazz_id = c.id
+                        left join vip_course vc on c.course_id = vc.id
+                        WHERE user_id=? AND clazz_id=?`;
+        const results = await query(sql,
+            [req.session.user.id, req.params.id]);
+        if (results.length > 0)
+            res.json({success: true, data: results[0]});
+        else
+            res.json({success: false,
+                message: '没有找到相关班级信息'});
+    } catch (error) {
+
+    }
+})
+
+// 概况
+router.get('/pandect/:classId', async (req, res) => {
+    try {
+        const sql = `select * from pandect where user_id=? and clazz_id=?`
+        const data = await query(sql, [req.session.user.id, req.params.classId]);
+        if (data.length > 0)
+            res.json({success: true, data: data[0]});
+        else
+            res.json({success: false});
+    } catch (error) {
+
+    }
+})
+
+router.get('/stages/:classId', async (req, res) => {
+    try {
+        const sql = `SELECT st.id,st.name,st.title,st.sub_title,s.state,s.videos
+                         FROM status s
+                        left join stage st on st.id=s.stage_id
+                        left join clazz c on st.clazz_id=c.id
+                        where user_id=? and clazz_id=?;`
+        const data = await query(sql, [req.session.user.id, req.params.classId]);
+        if (data.length > 0)
+            res.json({success: true, data});
+        else
+            res.json({success: false});
+    } catch (error) {
+
+    }
+})
 
 module.exports = router;
 
