@@ -7,7 +7,7 @@ const helper = require('./helpers');//注册hbs帮助方法
 const cors = require('cors')
 
 // 导出自定义中间件
-const {initLocals} = require('./middleware');
+const {initLocals, requireAdmin} = require('./middleware');
 
 // 导入路由相关模块
 const indexRouter = require('./routes/index');
@@ -58,7 +58,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/open-courses', openCourses);
 app.use('/vip-course', vipCourse);
-app.use('/admin', adminRouter);
+app.use('/admin', requireAdmin, adminRouter);
 app.use('/api/code', codeRouter);
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/courses', require('./routes/api/course'));

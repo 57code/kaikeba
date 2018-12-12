@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const {query} = require('../../models/db');
 const md5 = require('md5');
+const {requireUser} = require('../../middleware');
 const salt = 'take a little salt';
 router.post('/auto-login', (req, res) => {
     const id = req.signedCookies.uid; // 加密方式获取
@@ -174,7 +175,7 @@ const upload = multer({
     }
 })
 
-router.post('/uploadAvatar', upload.single('file'),
+router.post('/uploadAvatar', [requireUser, upload.single('file')],
     async (req, res) => {
         if (!req.file) {
             res.sendStatus(500);
@@ -198,7 +199,7 @@ router.post('/uploadAvatar', upload.single('file'),
 
 
 // 查询用户所有课程
-router.get('/my-courses', async (req, res) => {
+router.get('/my-courses', requireUser, async (req, res) => {
     try {
         const sql = `select c.id,c.name,c.phase,vc.poster from user_clazz uc
                         left join clazz c on uc.clazz_id = c.id
@@ -211,7 +212,7 @@ router.get('/my-courses', async (req, res) => {
     }
 })
 
-router.get('/my-course/:id', async (req, res) => {
+router.get('/my-course/:id', requireUser, async (req, res) => {
     try {
         const sql = `select c.id,c.name,c.phase,vc.poster from user_clazz uc
                         left join clazz c on uc.clazz_id = c.id

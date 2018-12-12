@@ -23,3 +23,21 @@ module.exports.initLocals = async function (req, res, next) {
         }
     }
 }
+
+// 保护用户，检查登录状态
+module.exports.requireUser = function (req, res, next) {
+    if (!req.session.user) {
+        // 用户未登录，返回401状态码
+        res.sendStatus(401);
+    } else {
+        next()
+    }
+}
+module.exports.requireAdmin = function (req, res, next) {
+    if (!req.session.admin && req.originalUrl !== '/admin/login') {
+        // 用户未登录，返回401状态码
+        res.redirect('/admin/login');
+    } else {
+        next()
+    }
+}
