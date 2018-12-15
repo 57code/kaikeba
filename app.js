@@ -16,9 +16,11 @@ const openCourses = require('./routes/open-courses');
 const vipCourse = require('./routes/vip-course');
 const adminRouter = require('./routes/admin');
 const codeRouter = require('./routes/api/code');
+//代码设置环境变量
+// process.env.NODE_ENV = 'production'
 
 const app = express();
-
+app.set()
 // 视图引擎设置
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -46,11 +48,18 @@ app.use(session({
     // 关闭页面即失效
     // cookie: {maxAge: 7 * 24 * 3600 * 1000}
 }))
+
 // 设置静态目录
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+    maxAge: 86400// 静态文件缓存
+}));
 
 // 注册自定义中间件
 app.use(initLocals)
+
+const compression = require('compression')
+// 响应gzip压缩
+app.use(compression());
 
 
 // 路由注册
